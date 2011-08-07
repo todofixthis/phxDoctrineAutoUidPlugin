@@ -36,3 +36,8 @@ Example:
           index:
             unique: false
       ...
+
+# Known Issues
+
+- It is possible to set a record's UID to an invalid value using a DQL update
+    query.  Try not to do that.
