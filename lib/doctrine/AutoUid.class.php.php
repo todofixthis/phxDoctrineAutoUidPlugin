@@ -25,9 +25,12 @@
 class AutoUid extends Doctrine_Template
 {
   protected $_options = array(
-    'column'  => 'uid',
-    'index'   => true,
-    'unique'  => true
+    'column'      => 'uid',
+    'index'       => array(
+      'enabled'     => true,
+      'name'        => null,
+      'unique'      => true
+    )
   );
 
   public function setTableDefinition()
@@ -37,15 +40,38 @@ class AutoUid extends Doctrine_Template
     $this->hasColumn($column, 'string', 40);
 
     /* Add index if directed to do so. */
-    if( $this->getOption('index', true) )
+    if( $this->_options['index']['enabled'] )
     {
-      $opts = array('fields' => array($column));
-      if( $this->getOption('unique', true) )
+      /* Pick a name for this index. */
+      $index = $this->_options['index']['name'];
+      if( $index == '' )
       {
+        $index = $this->getTable()->getTableName() . '_autouid';
+      }
+
+      /* Add field and set uniqueness. */
+      $opts = array('fields' => array($column));
+      if( $this->_options['index']['unique'] )
+      {
+        /** @kludge Doctrine won't allow a unique key if its name matches its
+         *    column.
+         *
+         * Doctrine will still create the table; it will just make the index
+         *  non-unique
+         */
+        if( $index == $column )
+        {
+          throw new Doctrine_Exception(sprintf(
+            'Cannot name AutoUid unique key "%s" for table %s; Doctrine does not allow unique key names to match their field names.',
+              $index,
+              $this->getTable()->getTableName()
+          ));
+        }
+
         $opts['type'] = 'unique';
       }
 
-      $this->index($column, $opts);
+      $this->index($index, $opts);
     }
 
     /* Install the magic maker. */
