@@ -24,13 +24,31 @@
  */
 class AutoUid extends Doctrine_Template
 {
+  protected $_options = array(
+    'column'  => 'uid',
+    'index'   => true,
+    'unique'  => true
+  );
+
   public function setTableDefinition()
   {
+    /* Add UID column. */
     $column = $this->getOption('column', 'uid');
-
     $this->hasColumn($column, 'string', 40);
-    $this->index($column, array('fields' => array($column)));
 
+    /* Add index if directed to do so. */
+    if( $this->getOption('index', true) )
+    {
+      $opts = array('fields' => array($column));
+      if( $this->getOption('unique', true) )
+      {
+        $opts['type'] = 'unique';
+      }
+
+      $this->index($column, $opts);
+    }
+
+    /* Install the magic maker. */
     $this->addListener(new AutoUidListener());
   }
 }
