@@ -8,7 +8,7 @@ phxDoctrineAutoUidPlugin adds an AutoUid behavior to Doctrine which ensures that
 After installing the plugin, you can add the behavior to any of your models in
   your `schema.yml` file:
 
-    # sf_config_dir/doctrine/schema.yml:
+    # sf_config_dir/doctrine/schema.yml
 
     MyModel:
       actAs:
@@ -25,7 +25,7 @@ The AutoUid behavior accepts the following options:
 
 Example:
 
-    # sf_config_dir/doctrine/schema.yml:
+    # sf_config_dir/doctrine/schema.yml
 
     MyModel:
       actAs:
