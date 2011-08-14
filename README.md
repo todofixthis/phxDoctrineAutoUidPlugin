@@ -41,6 +41,7 @@ Example:
 
 - It is possible to set a record's UID to an invalid value using a DQL update
     query.  Try not to do that.
+- Relations based off of a record's UID field are not updated if the record's UID is changed.  As a workaround, make sure you `save()` new records before adding related records, and try really hard not to change an existing record's UID.
 
 # Changelog
 
