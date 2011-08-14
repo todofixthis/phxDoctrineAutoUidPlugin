@@ -41,3 +41,13 @@ Example:
 
 - It is possible to set a record's UID to an invalid value using a DQL update
     query.  Try not to do that.
+
+# Changelog
+
+## 1.0.1
+
+- `preInsert()` no longer overrides custom-set UIDs.
+
+## 1.0.0
+
+- Initial release.
