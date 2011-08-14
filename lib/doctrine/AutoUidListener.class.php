@@ -26,8 +26,7 @@ class AutoUidListener extends Doctrine_Record_Listener
 {
   public function preInsert( Doctrine_Event $event )
   {
-    $record = $event->getInvoker();
-    $record->setUid(UidGenerator::generateFromRecord($record));
+    $this->preUpdate($event);
   }
 
   public function preUpdate( Doctrine_Event $event )
