@@ -19,6 +19,8 @@
 
 /** Ensures that a UID-enabled object is always stored with a UID.
  *
+ * @author Phoenix Zerin <phoenix@todofixthis.com>
+ *
  * @package phxDoctrineAutoUidPlugin
  * @subpackage lib.doctrine
  */

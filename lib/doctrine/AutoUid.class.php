@@ -19,6 +19,8 @@
 
 /** Configures a model for use with the UID behavior.
  *
+ * @author Phoenix Zerin <phoenix@todofixthis.com>
+ *
  * @package phxDoctrineAutoUidPlugin
  * @subpackage lib.doctrine
  */

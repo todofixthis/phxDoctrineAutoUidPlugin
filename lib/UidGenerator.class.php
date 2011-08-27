@@ -19,6 +19,8 @@
 
 /** Generates a UID for a Doctrine object.
  *
+ * @author Phoenix Zerin <phoenix@todofixthis.com>
+ *
  * @package phxDoctrineAutoUidPlugin
  * @subpackage lib
  */
