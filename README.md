@@ -46,6 +46,11 @@ Example:
 
 # Changelog
 
+## 1.0.2
+
+- Allow specifying a unique index that has the same name as the UID column.
+  - Sorry Doctrine; that one was my fault, not yours.
+
 ## 1.0.1
 
 - `preInsert()` no longer overrides custom-set UIDs.
