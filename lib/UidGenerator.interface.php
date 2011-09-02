@@ -1,6 +1,5 @@
 <?php
-/**
- * This file is part of phxDoctrineAutoUidPlugin.
+/** This file is part of phxDoctrineAutoUidPlugin.
  *
  * phxDoctrineAutoUidPlugin is free software: you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License as
@@ -17,23 +16,18 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-/** Generates a UID for a Doctrine object.
+/** Describes the interface for a class that generates UIDs for objects.
  *
- * @author Phoenix Zerin <phoenix@todofixthis.com>
- *
- * @package phxDoctrineAutoUidPlugin
- * @subpackage lib
+ * @package
+ * @subpackage
  */
-class UidGenerator
+interface UidGenerator
 {
-  /** Generates a new random UID for an object.
+  /** Generates the UID for a Doctrine_Record.
    *
    * @param Doctrine_Record $record
    *
-   * @return string(sha1)
+   * @return string(uid)
    */
-  static public function generateFromRecord( Doctrine_Record $record )
-  {
-    return sha1(uniqid(print_r($record->toArray(), true), true));
-  }
+  public function generateUid( Doctrine_Record $record );
 }

@@ -28,6 +28,8 @@ class AutoUid extends Doctrine_Template
 {
   protected $_options = array(
     'column'      => 'uid',
+    'length'      => '40',
+    'generator'   => 'UidGenerator_RandomSha1',
     'index'       => array(
       'enabled'     => true,
       'name'        => null,
@@ -38,8 +40,9 @@ class AutoUid extends Doctrine_Template
   public function setTableDefinition()
   {
     /* Add UID column. */
-    $column   = $this->getOption('column', 'uid');
-    $this->hasColumn($column, 'string', 40);
+    $column = $this->getOption('column', 'uid');
+    $length = $this->getOption('length', '40');
+    $this->hasColumn($column, 'string', $length);
 
     /* Add index if directed to do so. */
     if( $this->_options['index']['enabled'] )
@@ -62,6 +65,6 @@ class AutoUid extends Doctrine_Template
     }
 
     /* Install the magic maker. */
-    $this->addListener(new AutoUidListener());
+    $this->addListener(new AutoUidListener($this->getOptions()));
   }
 }

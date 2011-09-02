@@ -19,7 +19,9 @@ After installing the plugin, you can add the behavior to any of your models in
 
 The AutoUid behavior accepts the following options:
 
-- `column`: Specify the name of the column that will contain the UID (default: `"uid"`).
+- `column`: Specify the name of the column that will contain the UID (default: `uid`).
+- `generator`: Specify the name of the class that will be used to generate UIDs (default: `UidGenerator_RandomSha1`).
+- `length`: Specify the size of the column that will contain the UID (default: `40`).
 - `index`: (array)
   - `enabled`: Specify whether to index the UID column (default: `true`),
   - `name`: Specify the name of the index (default: `(table name)_autouid`).
@@ -32,10 +34,15 @@ Example:
     MyModel:
       actAs:
         AutoUid:
-          column: hash
+          column:     hash
+          length:     32
+          generator:  MD5ChecksumGenerator
           index:
             unique: false
       ...
+
+The classname specified for the `generator` option must implement the
+  `UidGenerator` interface (included as part of this plugin).
 
 # Known Issues
 
@@ -45,6 +52,10 @@ Example:
   - An additional consequence of this issue is that you cannot set up relations in data fixture files except by explicitly specifying the UID value for each record.
 
 # Changelog
+
+## 1.1.0
+
+- Resolved [#1]:  Specify UID generator in schema.yml.
 
 ## 1.0.2
 
