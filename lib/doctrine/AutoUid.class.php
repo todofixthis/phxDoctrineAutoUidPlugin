@@ -39,12 +39,7 @@ class AutoUid extends Doctrine_Template
   {
     /* Add UID column. */
     $column   = $this->getOption('column', 'uid');
-    $options  = array();
-    if( $this->_options['index']['unique'] )
-    {
-      $options['unique'] = true;
-    }
-    $this->hasColumn($column, 'string', 40, $options);
+    $this->hasColumn($column, 'string', 40);
 
     /* Add index if directed to do so. */
     if( $this->_options['index']['enabled'] )
