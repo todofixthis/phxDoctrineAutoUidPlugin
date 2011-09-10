@@ -25,7 +25,4 @@
  */
 class phxDoctrineAutoUidPluginConfiguration extends sfPluginConfiguration
 {
-  public function initialize(  )
-  {
-  }
 }
