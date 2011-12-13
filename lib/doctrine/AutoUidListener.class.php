@@ -32,7 +32,6 @@ class AutoUidListener extends Doctrine_Record_Listener
    *
    * @param array $options
    *
-   * @return void
    * @throws InvalidArgumentException if the UID generator is invalid.
    */
   public function __construct( array $options )
@@ -68,8 +67,10 @@ class AutoUidListener extends Doctrine_Record_Listener
   public function preSave( Doctrine_Event $event )
   {
     $record = $event->getInvoker();
+    /** @noinspection PhpUndefinedMethodInspection */
     if( $record->getUid() == '' )
     {
+      /** @noinspection PhpUndefinedMethodInspection */
       $record->setUid($this->getOption('generator')->generateUid($record));
     }
   }

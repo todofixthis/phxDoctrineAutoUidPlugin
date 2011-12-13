@@ -30,7 +30,7 @@ class UidGenerator_RandomSha1
    *
    * @param Doctrine_Record $record
    *
-   * @return string(uid)
+   * @return string
    */
   public function generateUid( Doctrine_Record $record )
   {

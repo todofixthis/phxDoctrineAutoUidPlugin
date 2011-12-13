@@ -18,8 +18,8 @@
 
 /** Describes the interface for a class that generates UIDs for objects.
  *
- * @package
- * @subpackage
+ * @package phxDoctrineAutoUidPlugin
+ * @subpackage lib
  */
 interface UidGenerator
 {
@@ -27,7 +27,7 @@ interface UidGenerator
    *
    * @param Doctrine_Record $record
    *
-   * @return string(uid)
+   * @return string
    */
   public function generateUid( Doctrine_Record $record );
 }
