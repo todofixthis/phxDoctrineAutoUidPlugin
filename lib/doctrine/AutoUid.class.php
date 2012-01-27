@@ -21,22 +21,27 @@
  * @author Phoenix Zerin <phoenix@todofixthis.com>
  *
  * @package phxDoctrineAutoUidPlugin
- * @subpackage lib.doctrine
+ * @subpackage lib
  */
-class AutoUid extends Doctrine_Template
+class AutoUid
+  extends Doctrine_Template
 {
   protected $_options = array(
-    'column'      => 'uid',
-    'length'      => '40',
-    'generator'   => 'UidGenerator_RandomSha1',
-    'index'       => array(
-      'enabled'     => true,
-      'name'        => null,
-      'unique'      => true
-    )
+      'column'      => 'uid'
+    , 'length'      => '40'
+    , 'generator'   => 'UidGenerator_RandomSha1'
+    , 'index'       => array(
+          'enabled'   => true
+        , 'name'      => null
+        , 'unique'    => true
+      )
   );
 
-  public function setTableDefinition()
+  /** Applies custom table configuration.
+   *
+   * @return void
+   */
+  public function setTableDefinition(  )
   {
     /* Add UID column. */
     $column = $this->getOption('column', 'uid');

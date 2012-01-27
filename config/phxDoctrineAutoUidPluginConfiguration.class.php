@@ -23,6 +23,7 @@
  * @package phxDoctrineAutoUidPlugin
  * @subpackage config
  */
-class phxDoctrineAutoUidPluginConfiguration extends sfPluginConfiguration
+class phxDoctrineAutoUidPluginConfiguration
+  extends sfPluginConfiguration
 {
 }

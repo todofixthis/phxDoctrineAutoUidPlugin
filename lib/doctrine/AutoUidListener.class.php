@@ -21,9 +21,10 @@
  * @author Phoenix Zerin <phoenix@todofixthis.com>
  *
  * @package phxDoctrineAutoUidPlugin
- * @subpackage lib.doctrine
+ * @subpackage lib
  */
-class AutoUidListener extends Doctrine_Record_Listener
+class AutoUidListener
+  extends Doctrine_Record_Listener
 {
   const
     REQUIRED_INTERFACE = 'UidGenerator';
@@ -46,8 +47,8 @@ class AutoUidListener extends Doctrine_Record_Listener
     if( ! class_exists($options['generator']) )
     {
       throw new InvalidArgumentException(sprintf(
-        'UID generator class %s does not exist.',
-          $options['generator']
+        'UID generator class %s does not exist.'
+          , $options['generator']
       ));
     }
 
@@ -55,23 +56,29 @@ class AutoUidListener extends Doctrine_Record_Listener
     if( ! $ref->implementsInterface(self::REQUIRED_INTERFACE) )
     {
       throw new InvalidArgumentException(sprintf(
-        'UID generator class %s does not implement required interface %s.',
-          $options['generator'],
-          self::REQUIRED_INTERFACE
+        'UID generator class %s does not implement required interface %s.'
+          , $options['generator']
+          , self::REQUIRED_INTERFACE
       ));
     }
 
     $this->setOption('generator', $ref->newInstance());
   }
 
+  /** Pre-save hook for records.
+   *
+   * @param Doctrine_Event $event
+   *
+   * @return void
+   */
   public function preSave( Doctrine_Event $event )
   {
     $record = $event->getInvoker();
-    /** @noinspection PhpUndefinedMethodInspection */
-    if( $record->getUid() == '' )
+    /** @noinspection PhpUndefinedFieldInspection */
+    if( $record->uid == '' )
     {
-      /** @noinspection PhpUndefinedMethodInspection */
-      $record->setUid($this->getOption('generator')->generateUid($record));
+      /** @noinspection PhpUndefinedFieldInspection, PhpUndefinedMethodInspection */
+      $record->uid = $this->getOption('generator')->generateUid($record);
     }
   }
 }

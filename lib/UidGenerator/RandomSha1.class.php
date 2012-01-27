@@ -21,7 +21,7 @@
  * @author Phoenix Zerin <phoenix@todofixthis.com>
  *
  * @package phxDoctrineAutoUidPlugin
- * @subpackage lib.uidgenerator
+ * @subpackage lib
  */
 class UidGenerator_RandomSha1
   implements UidGenerator
