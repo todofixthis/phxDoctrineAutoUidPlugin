@@ -69,6 +69,7 @@ class AutoUid
     }
 
     /* Install the magic maker. */
+    /** @noinspection PhpParamsInspection */
     $this->addListener(new AutoUidListener($this->getOptions()));
   }
 }
