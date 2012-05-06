@@ -32,6 +32,7 @@ class UidGenerator_ContentHash
    *
    * @param UidHashable|Doctrine_Record $record
    *
+   * @throws LogicException If $record is not compatible with this behavior.
    * @return string
    */
   public function generateUid( Doctrine_Record $record )
